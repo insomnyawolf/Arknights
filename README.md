@@ -16,6 +16,13 @@ Try replicating a concept character that i found about [Mostima Alter](https://w
 
 Now it's a unity project once again (it doesn't compile nor work, nor is close to be ready)
 
+## Notes
+
+### 2022/03/18
+
+I started working on this, for now what i've seen seems pretty clear and the person thet wrote it had awesome ideas.
+For now i'll be cleaning things, refactoring parts of the code, translating comments, and reordering things as i thing they'll be more clear or not.
+
 ## Original readme translated
 
 [Unity] Tomorrow's Ark re-engraved source code (without resources)

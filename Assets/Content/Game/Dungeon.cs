@@ -107,7 +107,7 @@ namespace Scripts.Game
             }
         }
 
-        public void SpawnChar(Transform block, CharData data, Vector3 direction)
+        public void SpawnChar(Transform block, CharacterData data, Vector3 direction)
         {
             Char c = new Char(data, Instantiate(GameManager.Inst().charPrefab, block), direction);
             cost -= data.GetAttribute().GetCost();

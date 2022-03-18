@@ -34,7 +34,7 @@ namespace Data.Player
 
         // 角色数据 (预加载所有已知元数据)
         [SerializeField]
-        private List<CharData> charList;
+        private List<CharacterData> charList;
 
         // 队伍数据 (队伍名 + 角色类型)
         [SerializeField]
@@ -60,7 +60,7 @@ namespace Data.Player
         public int GetMaxLevel() => 120;
         public int GetMaxExp() => GetMaxExp(level);
         public int GetMaxReason() => GetMaxReason(level);
-        public List<CharData> GetCharList() => charList;
+        public List<CharacterData> GetCharList() => charList;
 
         public string[] GetSquad()
         {
@@ -85,8 +85,8 @@ namespace Data.Player
             this.password = password;
             reason = GetMaxReason();
 
-            charList = new List<CharData> {
-                new CharData("AMIYA")
+            charList = new List<CharacterData> {
+                new CharacterData("AMIYA")
             };
             ResetSquad();
             items = new List<ItemStack> {
@@ -127,7 +127,7 @@ namespace Data.Player
             items.Sort((a, b) => a.GetId() == b.GetId() ? 0 : a.GetId() > b.GetId() ? 1 : -1);
         }
 
-        public CharData GetCharData(string id)
+        public CharacterData GetCharData(string id)
         {
             return charList.FirstOrDefault(charData => charData.GetId() == id);
         }

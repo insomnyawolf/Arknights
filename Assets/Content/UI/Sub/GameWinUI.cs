@@ -65,7 +65,7 @@ namespace UI.Sub
                     //激活面板 获取Dungeon数据、刷新。
                     PlayerData playerData = PlayerManager.Inst().Get();
                     DungeonMeta dungeonMeta = Dungeon.inst.dungeonMeta;
-                    CharData data;
+                    CharacterData data;
                     do
                     {
                         data = playerData.GetCharData(playerData.GetSquad()[new Random().Next(playerData.GetSquad().Length)]);

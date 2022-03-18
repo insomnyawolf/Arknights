@@ -69,7 +69,7 @@ namespace UI.Sub
             {
                 // 防止连击
                 if (state != UIState.Show) return;
-                CharData charData = data.GetCharData(initialSelect);
+                CharacterData charData = data.GetCharData(initialSelect);
                 for (int i = 0; i < data.GetSquad().Length; i++)
                 {
                     if (charData == null && !string.IsNullOrEmpty(data.GetSquad()[i])) continue;
@@ -134,7 +134,7 @@ namespace UI.Sub
             }
             infoGroup.DOFade(0.3f, 0.1f).OnComplete(() =>
             {
-                CharData charData = data.GetCharData(currentSelect);
+                CharacterData charData = data.GetCharData(currentSelect);
                 if (charData != null)
                 {
                     char_name.text = charData.GetCharMeta().GetChineseName();
@@ -171,7 +171,7 @@ namespace UI.Sub
             ui.data = PlayerManager.Inst().Get();
             ui.initialSelect = select;
             ui.currentSelect = select;
-            List<CharData> dataList = new List<CharData>(ui.data.GetCharList()).FindAll(d => !ui.data.GetSquad().Contains(d.GetId()) || d.GetId() == select);
+            List<CharacterData> dataList = new List<CharacterData>(ui.data.GetCharList()).FindAll(d => !ui.data.GetSquad().Contains(d.GetId()) || d.GetId() == select);
             for (int i = 0; i < dataList.Count || i < ui.list.Count; i++)
             {
                 if (i < dataList.Count)
@@ -224,7 +224,7 @@ namespace UI.Sub
             private CharSelectUI ui;
             internal Transform transform;
             internal Transform select;
-            internal CharData data;
+            internal CharacterData data;
 
             private Text name;
             private Text level;
@@ -258,12 +258,12 @@ namespace UI.Sub
                 transform.GetComponent<Button>().onClick.AddListener(OnClick);
             }
 
-            public void SetData(CharData data)
+            public void SetData(CharacterData data)
             {
                 transform.gameObject.SetActive(data != null);
                 if (data != null && this.data != data)
                 {
-                    CharMeta charMeta = data.GetCharMeta();
+                    CharacterMetadata charMeta = data.GetCharMeta();
                     int rarity = charMeta.GetRarity();
                     name.text = charMeta.GetChineseName();
                     charCard.sprite = charMeta.GetCharImage();
@@ -281,7 +281,7 @@ namespace UI.Sub
             public void Update()
             {
                 level.text = data.GetLevel().ToString();
-                expPercentage.fillAmount = data.GetExp() / (float)data.GetMaxExp();
+                expPercentage.fillAmount = data.GetExp() / (float)data.GetMaxExperience();
                 eliteImage.gameObject.SetActive(data.GetElite() > 0);
                 if (data.GetElite() > 0)
                 {

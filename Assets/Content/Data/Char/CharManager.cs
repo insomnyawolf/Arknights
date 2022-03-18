@@ -12,7 +12,7 @@ namespace Data.Char
     public class CharManager : Single<CharManager>
     {
         // 元数据
-        private Dictionary<string, CharMeta> metaDictionary = new Dictionary<string, CharMeta>();
+        private Dictionary<string, CharacterMetadata> metaDictionary = new Dictionary<string, CharacterMetadata>();
         // 阵营
         private Dictionary<string, Sprite> campImage = new Dictionary<string, Sprite>();
         // 卡图
@@ -58,12 +58,12 @@ namespace Data.Char
         }
 
         // 获取对象
-        public CharMeta GetMeta(string id) => metaDictionary.ContainsKey(id) ? metaDictionary[id] : LoadMeta(id);
+        public CharacterMetadata GetMeta(string id) => metaDictionary.ContainsKey(id) ? metaDictionary[id] : LoadMeta(id);
 
         // 加载LoadMeta数据
-        private CharMeta LoadMeta(string id)
+        private CharacterMetadata LoadMeta(string id)
         {
-            CharMeta meta = Asset.Load<CharMeta>(GameSettings.CHAR_META_PATH, id);
+            CharacterMetadata meta = Asset.Load<CharacterMetadata>(GameSettings.CHAR_META_PATH, id);
             meta.SetId(id);
             metaDictionary.Add(id, meta);
             return meta;

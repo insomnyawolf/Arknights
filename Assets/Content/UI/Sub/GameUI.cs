@@ -136,7 +136,7 @@ namespace UI.Sub
             SoundManager.Inst().PlayMusic(GameManager.Inst().clip, false, () => { SoundManager.Inst().PlayMusic(GameManager.Inst().loop_clip, true); });
             foreach (string charID in data.GetSquad())
             {
-                CharData charData = data.GetCharData(charID);
+                CharacterData charData = data.GetCharData(charID);
                 if (charData == null) continue;
                 CharCard charCard = Instantiate(cardPrefab, cardPrefab.parent).GetComponent<CharCard>();
                 charCard.gameObject.SetActive(true);
@@ -229,7 +229,7 @@ namespace UI.Sub
             private Transform block;
 
             // 干员数据
-            private CharData data;
+            private CharacterData data;
 
             //距离
             private const short radius = 220;
@@ -252,7 +252,7 @@ namespace UI.Sub
                 panel.gameObject.SetActive(false);
             }
 
-            public void Place(Transform place, Transform block, CharData data)
+            public void Place(Transform place, Transform block, CharacterData data)
             {
                 this.place = place;
                 this.block = block;
@@ -358,7 +358,7 @@ namespace UI.Sub
             private Image img_charImage;
             private Text txt_cost;
             private Image img_profession;
-            internal CharData data;
+            internal CharacterData data;
             private GameObject black;
 
             private int cost;
@@ -377,7 +377,7 @@ namespace UI.Sub
                 black = transform.Find("Panel/Black").gameObject;
             }
 
-            public void Init(GameUI ui, CharData data)
+            public void Init(GameUI ui, CharacterData data)
             {
                 //
                 this.ui = ui;

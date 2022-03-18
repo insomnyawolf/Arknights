@@ -157,7 +157,7 @@ namespace UI.Sub
             internal RectTransform transform;
             internal CanvasGroup canvasGroup;
             internal int index;
-            internal CharData charData;
+            internal CharacterData charData;
 
             private Text txt_health;
             private Text txt_atk;
@@ -212,7 +212,7 @@ namespace UI.Sub
                 btn_add_elite = transform.GetComponent<Button>("CharInfoPanel/RightPanel/Elite");
             }
 
-            public void SetData(CharData data)
+            public void SetData(CharacterData data)
             {
                 charData = data;
                 init();
@@ -220,7 +220,7 @@ namespace UI.Sub
 
             public void init()
             {
-                CharMeta meta = charData.GetCharMeta();
+                CharacterMetadata meta = charData.GetCharMeta();
                 transform.GetComponent<Image>("img_char").sprite = meta.GetImage();
                 transform.GetComponent<Image>("img_camp").sprite = CharManager.Inst().GetCampImage(meta.getCamp().ToString());
 
@@ -274,8 +274,8 @@ namespace UI.Sub
 
                 txt_level.text = $"{charData.GetLevel()}";
                 txt_max_level.text = $"{charData.GetMaxLevel()}";
-                txt_exp.text = $"<color=#EECB04>{charData.GetExp()}</color>/{charData.GetMaxExp()}";
-                img_exp_percentage.fillAmount = (float)charData.GetExp() / charData.GetMaxExp();
+                txt_exp.text = $"<color=#EECB04>{charData.GetExp()}</color>/{charData.GetMaxExperience()}";
+                img_exp_percentage.fillAmount = (float)charData.GetExp() / charData.GetMaxExperience();
 
                 img_elite.sprite = CharManager.Inst().GetCharEliteImage("big_" + charData.GetElite());
             }

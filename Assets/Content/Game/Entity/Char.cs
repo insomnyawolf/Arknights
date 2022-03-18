@@ -9,7 +9,7 @@ namespace Scripts.Game
 {
     public class Char : Entity
     {
-        internal CharData data;
+        internal CharacterData data;
         internal new CharAttribute attribute;
         internal TargetSelector<Monster> ts;
 
@@ -25,7 +25,7 @@ namespace Scripts.Game
         private float timeAtk;
 
 
-        public Char(CharData data, Transform transform, Vector3 direction) : base(transform, data.GetAttribute())
+        public Char(CharacterData data, Transform transform, Vector3 direction) : base(transform, data.GetAttribute())
         {
             this.data = data;
             transform.forward = Vector3.forward;

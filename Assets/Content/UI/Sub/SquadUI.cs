@@ -47,7 +47,7 @@ namespace UI.Sub
             data = PlayerManager.Inst().Get();
             for (int i = 0; i < 4; i++)
             {
-                CharData charData = data.GetCharData(data.GetSquad()[i]);
+                CharacterData charData = data.GetCharData(data.GetSquad()[i]);
                 CharCard charCard = charCards[i];
                 charCard.transform.DOScale(0.9f, 0.1f).OnComplete(() =>
                 {
@@ -83,7 +83,7 @@ namespace UI.Sub
             private Transform empty;
             private Transform exist;
 
-            private CharData data;
+            private CharacterData data;
 
             private Text name;
             private Text level;
@@ -119,13 +119,13 @@ namespace UI.Sub
                 exist.GetComponent<Button>().onClick.AddListener(OnClick);
             }
 
-            public void SetData(CharData data)
+            public void SetData(CharacterData data)
             {
                 empty.gameObject.SetActive(data == null);
                 exist.gameObject.SetActive(data != null);
                 if (data != null && this.data != data)
                 {
-                    CharMeta charMeta = data.GetCharMeta();
+                    CharacterMetadata charMeta = data.GetCharMeta();
                     int rarity = charMeta.GetRarity();
                     name.text = charMeta.GetChineseName();
                     charCard.sprite = charMeta.GetCharImage();
@@ -143,7 +143,7 @@ namespace UI.Sub
             public void Update()
             {
                 level.text = data.GetLevel().ToString();
-                expPercentage.fillAmount = data.GetExp() / (float)data.GetMaxExp();
+                expPercentage.fillAmount = data.GetExp() / (float)data.GetMaxExperience();
                 eliteImage.gameObject.SetActive(data.GetElite() > 0);
                 if (data.GetElite() > 0)
                 {

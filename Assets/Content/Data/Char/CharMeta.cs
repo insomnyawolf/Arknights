@@ -10,7 +10,7 @@ namespace Data.Char
     // 角色元数据
     [Serializable]
     [CreateAssetMenu(fileName = "CharID", menuName = "ArkNight/CharMeta")]
-    public class CharMeta : ScriptableObject
+    public class CharacterMetadata : ScriptableObject
     {
         // 角色类型枚举
         private string id;
@@ -105,10 +105,6 @@ namespace Data.Char
             }
         }
 
-        /**
-         * 获得最大精英值
-         * rarity - 稀有度
-         */
         public static int GetMaxElite(int rarity)
         {
             switch (rarity)
@@ -127,50 +123,95 @@ namespace Data.Char
             }
         }
 
-        /**
-         * 获得最大等级
-         * rarity - 稀有度
-         * elite - 当前精英阶级
-         */
+#warning must find a better way but i'm not a fan of ternary operators
         public static int GetMaxLevel(int rarity, int elite)
         {
-            switch (rarity)
+            if (rarity == 1 || rarity == 2)
             {
-                case 1:
-                case 2:
-                    if (elite == 0) return 30;
-                    break;
-                case 3:
-                    if (elite == 0) return 40;
-                    if (elite == 1) return 55;
-                    break;
-                case 4:
-                    return elite == 0 ? 45 : elite == 1 ? 60 : 70;
-                case 5:
-                    return elite == 0 ? 50 : elite == 1 ? 70 : 80;
-                case 6:
-                    return elite == 0 ? 50 : elite == 1 ? 80 : 90;
+                // Sanity Check, there shouldn't be other values here
+                if (elite == 0)
+                {
+                    return 30;
+                }
             }
+
+            if (rarity == 3)
+            {
+                // Sanity Check, there shouldn't be other values here
+                if (elite == 0)
+                {
+                    return 40;
+                }
+                if (elite == 1)
+                {
+                    return 55;
+                }
+            }
+
+            if (rarity == 4)
+            {
+                // Sanity Check, there shouldn't be other values here
+                if (elite == 0)
+                {
+                    return 45;
+                }
+                if (elite == 1)
+                {
+                    return 60;
+                }
+                if (elite == 2)
+                {
+                    return 70;
+                }
+            }
+
+            if (rarity == 5)
+            {
+                // Sanity Check, there shouldn't be other values here
+                if (elite == 0)
+                {
+                    return 50;
+                }
+                if (elite == 1)
+                {
+                    return 70;
+                }
+                if (elite == 2)
+                {
+                    return 80;
+                }
+            }
+
+            if (rarity == 6)
+            {
+                // Sanity Check, there shouldn't be other values here
+                if (elite == 0)
+                {
+                    return 50;
+                }
+                if (elite == 1)
+                {
+                    return 80;
+                }
+                if (elite == 2)
+                {
+                    return 90;
+                }
+            }
+
+#warning consider throwing an exception as this should never happen
             return -1;
         }
 
-        /**
-         * 获得最大经验值
-         * elite - 当前精英阶级
-         * level - 当前等级
-         */
-        public static int GetMaxExp(int elite, int level)
+        public static int GetMaxExperience(int elite, int level)
         {
-            switch (elite)
+            return elite switch
             {
-                case 0:
-                    return 100 + level * 20;
-                case 1:
-                    return 120 + level * 60;
-                case 2:
-                    return 120 + level * 120;
-            }
-            return -1;
+                0 => 100 + level * 20,
+                1 => 120 + level * 60,
+                2 => 120 + level * 120,
+                _ => -1,
+            };
         }
     }
 }
